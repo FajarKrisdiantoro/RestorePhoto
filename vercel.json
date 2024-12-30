@@ -1,19 +1,24 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "main.py",
-            "use": "@vercel/python"
-        },
-        {
-            "src": "static/images/*",
-            "use": "@vercel/static"
-        }
+      {
+        "src": "main.py",
+        "use": "@vercel/python"
+      },
+      {
+        "src": "public/images/*",
+        "use": "@vercel/static"
+      }
     ],
     "routes": [
-        {
-            "src": "/.*",
-            "dest": "main.py"
-        }
+      {
+        "src": "/images/(.*)",
+        "dest": "/public/images/$1"
+      },
+      {
+        "src": "/.*",
+        "dest": "main.py"
+      }
     ]
-}
+  }
+  

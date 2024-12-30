@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename  # type: ignore
 from photo_restorer import predict_image
 import os
 
-UPLOAD_FOLDER = './static/images'
+UPLOAD_FOLDER = './public/images'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__)
