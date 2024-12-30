@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Restoration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #f5f7fa, #e4e4e4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Container Styles */
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        /* Image Container */
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: flex-start; /* Align items to the top */
+        }
+
+        .image-container div {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+            height: 300px; /* Ensure equal height */
+        }
+
+        .image-container p {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .image-container a.button {
+            margin-top: 20px; /* Ensure the button is below the image */
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #3e8e41;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Photo Restoration</h2>
+
+        <form method="post" action="/" enctype="multipart/form-data">
+            <input type="file" name="file" autocomplete="off" required>
+            <input type="submit" value="Restore Photo" class="button">
+        </form>
+
+        <div class="image-container">
+            {% if filename %}
+                <div>
+                    <p>Original Image:</p>
+                    <img src="{{ url_for('static', filename='images/' + filename) }}" alt="Original Image">
+                </div>
+            {% endif %}
+            {% if restored_img_url %}
+                <div>
+                    <p>Restored Image:</p>
+                    <img src="{{ restored_img_url }}" alt="Restored Image">
+                    <a href="{{ restored_img_url }}" download class="button"><i class="fas fa-download"></i> Download</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 <a href="#">ImRest</a>. All rights reserved.</p>
+    </footer>
+</body>
+</html>
