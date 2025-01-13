@@ -7,3 +7,5 @@ pip install -r requirements.txt
 
 #Run Aplikasi 
 python main.py
+
+jika ada error , folder public bisa di rename menjadi static, kemudian perbaiki routing untuk menampilkan gambar original di bagian index.html pada container original image , di bagian img src bisa di perbaiki dari public menjadi static
